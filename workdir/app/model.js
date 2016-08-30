@@ -18,7 +18,7 @@
 	/**
 	 * Storage key (similar to database name) for this app.
 	 */
-	$mJ.storage.storageKey = '[should be unique among apps from the same domain]Data';
+	$mJ.storage.storageKey = 'TestProjectData';
 	
 	/**
 	 * Schema.
