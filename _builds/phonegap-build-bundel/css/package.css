@@ -42,12 +42,11 @@ ul[data-role=listview] a.disabled {
 .ui-box > h3 {
 	text-align: center;
 	margin: 0;
-	padding: .5em;
-	font-size: 110%;
+/*EOC*/
+	padding: 8px;
+	line-height: 22px;
+	font-size: 100%;
 	border-style: none none solid none;
-}
-.ui-box > div {
-	margin: 1em;
 }
 .ui-box > div {
 	margin: 1em;
@@ -62,7 +61,7 @@ ul[data-role=listview] a.disabled {
 	right:0; top:0;
 	position: absolute;
 	padding:0;
-	margin:.3em;
+	margin:.2em .3em;
 }
 /*EOC*/
 .controlgroup-textinput {

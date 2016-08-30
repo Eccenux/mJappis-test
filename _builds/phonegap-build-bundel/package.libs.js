@@ -36,15 +36,28 @@
  *   GPL v3 http://opensource.org/licenses/GPL-3.0
  *
  * @param {String} tag Tag to be put in console (e.g. class name).
+ * @param {Object|Boolean} levels Preset for enabled levels (true|false for setting all levels).
  * @class Logger
  */
-function Logger(tag) {
+function Logger(tag, levels) {
+// EOC
 	this.enabled = true;
+// EOC
+	this.enabledLevels = {
+		info : true,
+		warn : true,
+		error : true
+	};
+// EOC
 	this._tag = tag;
+// EOC
 	this.performanceEnabled = true;
-	this.performancePrevious = 0;
+// EOC
+	this._performancePrevious = 0;
+
+	// setup `_performanceNow` proxy for `performance.now`
 	if (this.performanceEnabled) {
-		this.performanceNow = (typeof(performance)!='undefined' && 'now' in performance)
+		this._performanceNow = (typeof(performance)!='undefined' && 'now' in performance)
 		? function () {
 			return performance.now();
 		}
@@ -52,27 +65,42 @@ function Logger(tag) {
 		: function () {
 			return (new Date()).getTime();
 		};
-		this.performancePrevious = this.performanceNow();
+		this._performancePrevious = this._performanceNow();
 	}
+
+	this._initEnabled(levels);
 }
 // EOC
-Logger.prototype.isEnabled = function (level) {
+Logger.prototype._initEnabled = function (levels) {
+	if (typeof(levels) === 'boolean') {
+		this.enabled = levels;
+	}
+	else if (typeof(levels) === 'object') {
+		for (var level in levels) {
+			this.enabledLevels[level] = levels[level] ? true : false;
+		}
+	}
+};
 // EOC
-	if (this.enabled && typeof(console)!='undefined' && 'log' in console) {
-		return true;
+Logger.prototype.isEnabled = function (level) {
+	if (!this.enabled || typeof(console)==='undefined') {
+		return false;
 	}
 	var enabled = false;
 	switch (level) {
 		case 'info':
+			if ('log' in console) {
+				enabled = this.enabledLevels.info;
+			}
 		break;
 		case 'warn':
 			if ('warn' in console) {
-				enabled = true;
+				enabled = this.enabledLevels.warn;
 			}
 		break;
 		case 'error':
 			if ('error' in console) {
-				enabled = true;
+				enabled = this.enabledLevels.error;
 			}
 		break;
 	}
@@ -116,9 +144,9 @@ Logger.prototype._renderArguments = function (argumentsArray) {
 // EOC
 Logger.prototype.performance = function (comment) {
 	if (this.performanceEnabled && this.isEnabled('info')) {
-		var now = this.performanceNow();
-		this.info(comment, '; diff [ms]: ', now - this.performancePrevious);
-		this.performancePrevious = now;
+		var now = this._performanceNow();
+		this.info(comment, '; diff [ms]: ', now - this._performancePrevious);
+		this._performancePrevious = now;
 	}
 };
 // EOC
@@ -2753,7 +2781,7 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 {
 	var _self = this;
 	var LOG = new Logger('AutocompleteHelper');
-	LOG.enabled = false;
+	//LOG.enabled = false;
 
 	// bind
 	if (typeof($clear) != 'undefined') {
@@ -2761,8 +2789,18 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 			clear();
 		});
 	}
-	$input.keyup(function() {
-		onNewText.call(this);
+// EOC
+	$input.unbind();
+	$input.blur(function(){
+		LOG.info('blur', this);
+		$input.unbind('keyup');
+	});
+	$input.focus(function(){
+		LOG.info('focus', this);
+		$input.unbind('keyup');
+		$input.keyup(function() {
+			onNewText.call(this);
+		});
 	});
 // EOC
 	this.minLength = 2;
@@ -2784,7 +2822,7 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 	// allow public access
 	this.clearList = clear;
 // EOC
-	function onSelect() {
+	function onSelect(event) {
 		var text = $(this).text();
 		if (_self.parseSelected) {
 			text = _self.parseSelected(text);
@@ -2792,15 +2830,25 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 		LOG.info('select', text);
 		$input.val(text);
 		clear();
+		event.preventDefault();
+		event.stopPropagation();
 	}
 
 	var escapeRegExp = /[-[\]{}()*+?.,\\^$|#\s]/g;
+
+	// previous text value in user input
+	var prevValue = "";
 // EOC
 	function onNewText() {
 		var value = this.value;
+		// avoid running when e.g. shift/home were pressed (and nothing actully changed)
+		if (prevValue === value) {
+			return;
+		}
 		if (value.length < _self.minLength) {
 			return;
 		}
+		prevValue = value;
 		if (value in cache) {
 			renderList(cache[value], value);
 			return;
@@ -2831,7 +2879,7 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 			.listview("refresh")
 			.trigger("updatelayout")
 		;
-		$('li', $ul).click(onSelect);
+		$('li', $ul).unbind().click(onSelect);
 	}
 // EOC
 	function htmlSpecialChars(text) {

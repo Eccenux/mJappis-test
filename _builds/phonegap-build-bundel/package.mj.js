@@ -265,6 +265,31 @@ window.$mJ = window.mJappisApplication =
 		}
 	};
 // EOC
+	$mJ.compareObjects = function (prev, now, ignore) {
+		var changes = {}, prop, pc;
+		if (typeof(ignore) !== 'object') {
+			ignore = [];
+		}
+		for (prop in now) {
+			if (ignore.indexOf(prop) >= 0) {
+				continue;
+			}
+			if (!prev || prev[prop] !== now[prop]) {
+				if (typeof now[prop] == "object") {
+					var subChanges = $mJ.compareObjects(prev[prop], now[prop]);
+					if(subChanges !== false) {
+						changes[prop] = subChanges;
+					}
+				} else {
+					changes[prop] = now[prop];
+				}
+			}
+		}
+		for (prop in changes)
+			return changes;
+		return false;
+	};
+// EOC
 	$mJ.bindInput = function(selector, storagePath)
 	{
 
