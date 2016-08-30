@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--
+	Main views of the application (pages and dialogs).
+	Single view has attribute data-role="page" or data-role="dialog"
+
+	mJappis Copyright:  ©2012-2014 Maciej "Nux" Jaros
+	          License:  CC-BY or MIT
+	            CC-BY: http://creativecommons.org/licenses/by/3.0/
+	              MIT: http://www.opensource.org/licenses/mit-license 
+	
+	Libraries Copyright and License in the JS files.
+	
+	See also: #page-about
+-->
+<html>
+<head>
+	<!-- Note! Main view title is in i18n -->
+	<title>App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<meta charset="UTF-8">
+
+	<meta name="author" content="Maciej Jaros">
+	
+	<!-- app icons -->
+	<link rel="shortcut icon" href="logo/logo.ico">
+	<link rel="apple-touch-icon" href="logo/logo072.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="logo/logo080.png" sizes="80x80">
+	<link rel="apple-touch-icon" href="logo/logo114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="logo/logo128.png">
+
+	<!-- CSS -->
+	<link href="css/package.css" rel="stylesheet">
+	
+	<!-- jQuery and other libs -->
+	<script src="package.libs.js" type="text/javascript"></script>
+	<script src="package.libs.index.js" type="text/javascript"></script>
+	
+	<!-- this app -->
+	<script src="package.mj.js" type="text/javascript"></script>
+	<script src="package.app.js" type="text/javascript"></script>
+	<script src="package.app.index.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		mJappisApplication.setup.full();
+	</script>
+	
+	<!-- jQuery mobile (must be here for mobile...options to work) -->
+	<script src="package.jqm.js" type="text/javascript"></script>
+
+	<!-- PHONEGAP:START -->
+			<!-- phonegap.js = cordova.js (file is injected automatically) -->
+		<script src="phonegap.js"></script>
+		<!-- PHONEGAP:END -->
+</head>
+<body lang="pl">
+<!--
+	Main page = start page
+-->	
+<div data-role="page" id="page-start">
+
+	<div data-role="header">
+		<h1 data-i18n-key="title-application">&nbsp;</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<span data-lang="en">Hello mJappis world!</span>
+		<span data-lang="pl">Witaj &#347;wiecie mJappis!</span>
+	</div><!-- /content -->
+
+<div data-role="footer" data-position="fixed" data-id="main-navi" data-position-setup="static">
+	<div data-role="navbar">
+		<ul>
+			<!--
+			<li><a href="index.html" data-icon="back" data-rel="back">
+				<span data-lang="en">Back</span>
+				<span data-lang="pl">Powr&oacute;t</span>
+			</a></li>
+			-->
+			<li><a href="#page-start" data-icon="home" data-i18n-key="title-application">&nbsp;</a></li>
+			<li><a href="#page-settings" data-icon="gear">
+				<span data-lang="pl">Ustawienia</span>
+				<span data-lang="en">Settings</span>
+			</a></li>
+			<li><a href="#page-about" data-icon="info">
+				<span data-lang="en">Help</span>
+				<span data-lang="pl">Pomoc</span>
+			</a></li>
+		</ul>
+	</div>
+</div></div><!-- /page -->
+
+<!--
+	About/help page
+-->	
+<div data-role="page" id="page-about">
+
+	<div data-role="header">
+		<h1>
+			<span data-lang="en">Help</span>
+			<span data-lang="pl">Pomoc</span>
+		</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+			<div data-role="collapsible" data-collapsed="false">
+				<h2>
+					<span data-lang="pl">O aplikacji</span>
+					<span data-lang="en">About</span>
+				</h2>
+				<div data-lang="pl">
+					<p>mJappis u&#322;atwia tworzenie aplikacji prawdziwie przeno&#347;nych.</p>
+					<p>Wersja aplikacji 0.1.1.</p>
+					<ol>
+						<li>Utw&oacute;rz model w JSON.</li>
+						<li>Dopisz widoki do HTML.</li>
+						<li>Dodaj interakcje w kontrolerach.</li>
+						<li>Testuj w przegl&#261;darce.</li>
+						<li>Zapakuj.</li>
+						<li>Uruchom gdzie chcesz.</li>
+					</ol>
+				</div>
+				<div data-lang="en">
+					<p>mJappis makes apps that move.</p>
+					<p>App version 0.1.1.</p>
+					<ul>
+						<li>Create model with JSON.</li>
+						<li>Append views to HTML</li>
+						<li>Add interactions in controllers.</li>
+						<li>Test in any browser.</li>
+						<li>Package.</li>
+						<li>Run anywhere.</li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="collapsible" data-collapsed="true">
+				<h2>
+					<span data-lang="pl">Warunki u&#380;ytkowania</span>
+					<span data-lang="en">Terms of usage</span>
+				</h2>
+				<div data-lang="pl">
+					<p>Copyright &copy; 2013 Maciej "Nux" Jaros.</p>
+					<p>Licencja <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">CC-BY-SA</a></p>
+					<p>Informacje na temat autor&oacute;w i licencji dla poszczeg&oacute;lnych bibliotek znajduj&#261; si&#281; w odpowiednich plikach JS oraz CSS.</p>
+				</div>
+				<div data-lang="en">
+					<p>Copyright &copy; 2013 Maciej "Nux" Jaros.</p>
+					<p>License <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">CC-BY-SA</a></p>
+					<p>Libraries copyright and license information is avaiable in the JS and CSS files.</p>
+				</div>
+			</div>
+			<div data-role="collapsible" data-collapsed="false">
+				<h2>
+					<span data-lang="pl">Pytania i odpowiedzi</span>
+					<span data-lang="en">FAQ</span>
+				</h2>
+				<div data-role="collapsible-set" data-theme="d" data-content-theme="d">
+					<div data-role="collapsible">
+						<h3>
+							<span data-lang="pl">Dlaczego nie dzia&#322;a zapis?</span>
+							<span data-lang="en">Why doesn't my data get saved?</span>
+						</h3>
+						<div data-lang="pl">
+							<p>Je&#347;li nie dzia&#322;a zapis, to najprawdopodobniej Twoja kom&oacute;rka nie obs&#322;uguje skrypt&oacute;w JavaScript lub ma ich obs&#322;ug&#281; wy&#322;&#261;czon&#261;. Program wymaga JavaScript do poprawnego dzia&#322;ania.</p>
+						</div>
+						<div data-lang="en">
+							<p>If saving doesn't work then your cellphone doesn't have JavaScript enabled. This application needs JavaScript to work properly.</p>
+						</div>
+					</div>
+					<!--
+					<div data-role="collapsible">
+						<h3>
+							<span data-lang="pl">Pytanie?</span>
+							<span data-lang="en">Question?</span>
+						</h3>
+						<div data-lang="pl">
+							<p>Odp.</p>
+						</div>
+						<div data-lang="en">
+							<p>Ans.</p>
+						</div>
+					</div>
+					-->
+				</div>
+			</div>
+		</div>
+
+	</div><!-- /content -->
+	
+<div data-role="footer" data-position="fixed" data-id="main-navi" data-position-setup="static">
+	<div data-role="navbar">
+		<ul>
+			<!--
+			<li><a href="index.html" data-icon="back" data-rel="back">
+				<span data-lang="en">Back</span>
+				<span data-lang="pl">Powr&oacute;t</span>
+			</a></li>
+			-->
+			<li><a href="#page-start" data-icon="home" data-i18n-key="title-application">&nbsp;</a></li>
+			<li><a href="#page-settings" data-icon="gear">
+				<span data-lang="pl">Ustawienia</span>
+				<span data-lang="en">Settings</span>
+			</a></li>
+			<li><a href="#page-about" data-icon="info">
+				<span data-lang="en">Help</span>
+				<span data-lang="pl">Pomoc</span>
+			</a></li>
+		</ul>
+	</div>
+</div></div><!-- /page -->
+
+<!--
+	Settings page
+-->	
+<div data-role="page" id="page-settings">
+
+	<div data-role="header">
+		<a href="index.html" data-icon="delete" data-rel="back" data-i18n-key="Cancel"></a>
+		<h1>
+			<span data-lang="en">Settings</span>
+			<span data-lang="pl">Ustawienia</span>
+		</h1>
+		<a href="index.html" data-icon="check" data-theme="b" id="settings-submit-btn" data-i18n-key="Save"></a>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		
+		<form action="index.html" method="GET" data-ajax="false" id="settings-form">
+			<!--
+				@see mJappisApplication.controller.settings
+			-->
+		</form>
+	</div><!-- /content -->
+	
+<div data-role="footer" data-position="fixed" data-id="main-navi" data-position-setup="static">
+	<div data-role="navbar">
+		<ul>
+			<!--
+			<li><a href="index.html" data-icon="back" data-rel="back">
+				<span data-lang="en">Back</span>
+				<span data-lang="pl">Powr&oacute;t</span>
+			</a></li>
+			-->
+			<li><a href="#page-start" data-icon="home" data-i18n-key="title-application">&nbsp;</a></li>
+			<li><a href="#page-settings" data-icon="gear">
+				<span data-lang="pl">Ustawienia</span>
+				<span data-lang="en">Settings</span>
+			</a></li>
+			<li><a href="#page-about" data-icon="info">
+				<span data-lang="en">Help</span>
+				<span data-lang="pl">Pomoc</span>
+			</a></li>
+		</ul>
+	</div>
+</div></div><!-- /page -->
+
+<!--
+	Common footer
+
+	Extra footer attributes supported by MulitFooter library:
+	 * data-footer-pages-include - Space separated list of 
+	   page ids on which this footer is to be copied to.
+	   If not used or empty then all pages will have this footer.
+	 * data-footer-pages-exclude - Space separated list of 
+	   page ids on which this footer should not to be copied to.
+	 * data-parser - JS or PHP (PHP is default)
+	   JS is fully dynamic but can break with new JQM,
+	   PHP is partially static, but less reliant on JQM versions.
+
+	Also extra postions are supported (default is `fixed`):
+	 * `below-header` - "footer" is treated as top menu and inserted in page header (below title).
+	 * `below-content` - footer is not fixed and instead treated as simple navbar. 
+		This might be better e.g. on devices with very small screens, 
+		but moving between long and short pages might look akward.
+-->
+<!-- /footer -->
+
+
+
+</body></html>
