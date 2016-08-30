@@ -1,0 +1,167 @@
+<!DOCTYPE html> 
+<!--
+	Simple barcode & QR code viewer
+-->
+<html>
+<head> 
+	<meta charset="UTF-8">
+	<title>code</title> 
+	<meta name="viewport" content="width=200px, initial-scale=1">
+	
+	<meta name="author" content="Maciej Jaros">
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="_builds/pgb-bundel/css/package.css">
+
+	<!-- jQuery and other libs -->
+	<script type="text/javascript" src="_builds/pgb-bundel/package.libs.js"></script>
+	<script type="text/javascript" src="_builds/pgb-bundel/package.libs.displayCode.js"></script>
+
+	<!-- this app -->
+	<script type="text/javascript" src="_builds/pgb-bundel/package.mj.js"></script>
+	<script type="text/javascript" src="_builds/pgb-bundel/package.app.js"></script>
+	
+	<!-- jQuery mobile (must be here for mobile...options to work) -->
+	<script type="text/javascript" src="_builds/pgb-bundel/package.jqm.js"></script>
+	
+<style type="text/css">
+.code-container
+{
+}
+#the-code-text
+{
+	text-align: center;
+}
+.code
+{
+	margin:0px auto;
+	width:200px;
+}
+.code1D
+{
+	height:100px;
+	font: 15px Arial;
+	margin:0px auto;
+}
+.code1D .vertline {
+	height:90px;
+}
+.code1D .bottomtext span {
+	padding:0px;
+}
+</style>
+<script type="text/javascript">
+(function($, _self)
+{
+	$(function()
+	{
+		//
+		// Params
+		var code = {
+			'value' : '1',
+			'type' : '2D'
+		};
+		var lang = 'pl';
+
+		location.href.replace (/[?&](barcode|lang|code\.?(?:type|value))=([^?&]+)/gi, function(a, key, value)
+		{
+			if (typeof(value) != 'string' || value == 'undefined')
+			{
+				return;
+			}
+			switch(key.toLowerCase())
+			{
+				case 'code.value':
+				case 'barcode':
+				case 'code':
+					code.value = decodeURIComponent(value);
+				break;
+				case 'code.type':
+				case 'codetype':
+				case 'type':
+					code.type = value;
+				break;
+				case 'lang':
+					lang = value;
+				break;
+			}
+		});
+		
+		//
+		// Setup i18nalized HTML (hide all marked with language attribute and show thoose having current language)
+		$('*[data-lang]').hide();
+		$('*[data-lang|="'+lang+'"]').show();
+
+		//
+		// render
+		$('#the-code')
+			.removeClass("code1D code2D");
+		switch (code.type)
+		{
+			// Interleaved
+			case '1D':
+				var barcodeDraw = new barcodeDraw("the-code");
+				barcodeDraw.drawNumber(code.value, true);
+				$('#the-code')
+					.addClass("code1D")
+				;
+				$('#the-code-text')
+					.html('')
+			break;
+			// QR codes
+			default:
+			case '2D':
+				$('#the-code')
+					.html('')
+					.qrcode({width: 200, height: 200, text: code.value})
+					.addClass("code2D")
+				;
+				$('#the-code-text')
+					.html(code.value)
+			break;
+		}
+		
+		//
+		// Back to internal HTML page setup
+		//$('a[data-rel|="back-internal-html"]')
+		_self.activateInternalBackButtons();
+
+	});
+})(jQuery, window.mJappisApplication);
+</script>
+</head> 
+<body> 
+
+<!--
+	Show library code/info page
+-->	
+<div data-role="page" id="page-display-code" data-theme="d">
+
+	<div data-role="header" data-theme="d">
+		<!--<a href="index.html" data-icon="back" data-rel="back">-->
+		<a href="index.html" data-icon="back" data-rel="back-internal-html">
+			<span data-lang="en">Back</span>
+			<span data-lang="pl">Powrót</span>
+		</a>
+		<h1>
+			<span data-lang="en">The code</span>
+			<span data-lang="pl">Kod</span>
+		</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		
+		<!-- the-code -->
+		<div class="code-container">
+			<div id="the-code" class="code">
+			</div>
+			<p id="the-code-text"></p>
+		</div>
+		
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+
+</body>
+</html>
