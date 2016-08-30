@@ -343,6 +343,43 @@
 	};
 
 	/**
+	 * Computes differences object.
+	 *
+	 * @see Based on: http://stackoverflow.com/questions/11021893/jquery-function-to-compute-the-difference-between-two-javascript-objects
+	 * 
+	 * @param {Object} prev Previous/base values.
+	 * @param {Object} now Current/new values.
+	 * @param {Array} ignore (optional) list of properties to ignore.
+	 * @returns {Boolean|Object}
+	 *	Boolean `false` when there are no changes,
+	 *	otherwise returns new values from the `now` object.
+	 */
+	$mJ.compareObjects = function (prev, now, ignore) {
+		var changes = {}, prop, pc;
+		if (typeof(ignore) !== 'object') {
+			ignore = [];
+		}
+		for (prop in now) {
+			if (ignore.indexOf(prop) >= 0) {
+				continue;
+			}
+			if (!prev || prev[prop] !== now[prop]) {
+				if (typeof now[prop] == "object") {
+					var subChanges = $mJ.compareObjects(prev[prop], now[prop]);
+					if(subChanges !== false) {
+						changes[prop] = subChanges;
+					}
+				} else {
+					changes[prop] = now[prop];
+				}
+			}
+		}
+		for (prop in changes)
+			return changes;
+		return false; // false when unchanged
+	};
+
+	/**
 	 * Bind input to a storage value.
 	 *
 	 * @note SHOULD be run in a controller or whenever the input is available (don't have to be visible though).
