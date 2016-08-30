@@ -1,0 +1,21 @@
+/**
+	Styles for a group of 1 input with 2 buttons
+*/
+.search-group .ui-controlgroup-controls > .controlgroup-textinput {
+	width: calc(100% - 6em);
+	width: -webkit-calc(100% - 6em);
+}
+.search-group-no-options .ui-controlgroup-controls > .controlgroup-textinput {
+	width: calc(100% - 3em);
+	width: -webkit-calc(100% - 3em);
+}
+.search-group .ui-controlgroup-controls > .ui-btn-icon-notext {
+	width:3em !important;
+}
+.search-group .ui-controlgroup-controls > .ui-btn.ui-last-child {
+    border-radius: 0 0.3125em 0.3125em 0;
+}
+.search-group .ui-controlgroup-controls .ui-input-search {
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
