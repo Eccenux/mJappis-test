@@ -7263,6 +7263,10 @@ $.widget( "mobile.listview", $.extend( {
 						buttonClass += " ui-btn-icon-right ui-icon-" + icon;
 					}
 
+					// remove default icon if user already suplied it
+					if (a.first().attr('class').search('ui-icon-') >= 0) {
+						buttonClass = buttonClass.replace(/ui-icon-\S+\s*/, '');
+					}
 					a.first().addClass( buttonClass );
 				} else if ( isDivider ) {
 					dividerTheme = ( getAttr( item[ 0 ], "theme" ) || o.dividerTheme || o.theme );
