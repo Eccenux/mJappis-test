@@ -34,15 +34,40 @@
  *   GPL v3 http://opensource.org/licenses/GPL-3.0
  *
  * @param {String} tag Tag to be put in console (e.g. class name).
+ * @param {Object|Boolean} levels Preset for enabled levels (true|false for setting all levels).
  * @class Logger
  */
-function Logger(tag) {
+function Logger(tag, levels) {
+	/**
+	 * Use to disable all levels for this logger instance.
+	 */
 	this.enabled = true;
+	/**
+	 * Use to disable levels separately.
+	 */
+	this.enabledLevels = {
+		info : true,
+		warn : true,
+		error : true
+	};
+	/**
+	 * The tag text.
+	 * @private
+	 */
 	this._tag = tag;
+	/**
+	 * Use to disable perfmonance logging.
+	 */
 	this.performanceEnabled = true;
-	this.performancePrevious = 0;
+	/**
+	 * Tracks performance tick for diffs.
+	 * @private
+	 */
+	this._performancePrevious = 0;
+
+	// setup `_performanceNow` proxy for `performance.now`
 	if (this.performanceEnabled) {
-		this.performanceNow = (typeof(performance)!='undefined' && 'now' in performance)
+		this._performanceNow = (typeof(performance)!='undefined' && 'now' in performance)
 		? function () {
 			return performance.now();
 		}
@@ -50,9 +75,26 @@ function Logger(tag) {
 		: function () {
 			return (new Date()).getTime();
 		};
-		this.performancePrevious = this.performanceNow();
+		this._performancePrevious = this._performanceNow();
 	}
+	
+	this._initEnabled(levels);
 }
+
+/**
+ * Init enabled levels.
+ * @param {Object|Boolean} levels Preset for enabled levels (true|false for setting all levels).
+ */
+Logger.prototype._initEnabled = function (levels) {
+	if (typeof(levels) === 'boolean') {
+		this.enabled = levels;
+	}
+	else if (typeof(levels) === 'object') {
+		for (var level in levels) {
+			this.enabledLevels[level] = levels[level] ? true : false;
+		}
+	}
+};
 
 /**
  * Check if logging is enabled for certain level.
@@ -61,26 +103,24 @@ function Logger(tag) {
  * @returns {Boolean} true if enabled
  */
 Logger.prototype.isEnabled = function (level) {
-	/*
-	if (this._tag.search(/(ControllerIgnorance|mJ\.setup|mJ\.controller)$/)!=0) {
+	if (!this.enabled || typeof(console)==='undefined') {
 		return false;
-	}
-	*/
-	if (this.enabled && typeof(console)!='undefined' && 'log' in console) {
-		return true;
 	}
 	var enabled = false;
 	switch (level) {
 		case 'info':
+			if ('log' in console) {
+				enabled = this.enabledLevels.info;
+			}
 		break;
 		case 'warn':
 			if ('warn' in console) {
-				enabled = true;
+				enabled = this.enabledLevels.warn;
 			}
 		break;
 		case 'error':
 			if ('error' in console) {
-				enabled = true;
+				enabled = this.enabledLevels.error;
 			}
 		break;
 	}
@@ -147,9 +187,9 @@ Logger.prototype._renderArguments = function (argumentsArray) {
  */
 Logger.prototype.performance = function (comment) {
 	if (this.performanceEnabled && this.isEnabled('info')) {
-		var now = this.performanceNow();
-		this.info(comment, '; diff [ms]: ', now - this.performancePrevious);
-		this.performancePrevious = now;
+		var now = this._performanceNow();
+		this.info(comment, '; diff [ms]: ', now - this._performancePrevious);
+		this._performancePrevious = now;
 	}
 };
 

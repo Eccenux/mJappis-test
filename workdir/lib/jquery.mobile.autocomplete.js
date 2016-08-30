@@ -26,7 +26,7 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 {
 	var _self = this;
 	var LOG = new Logger('AutocompleteHelper');
-	LOG.enabled = false;
+	//LOG.enabled = false;
 
 	// bind
 	if (typeof($clear) != 'undefined') {
@@ -34,8 +34,22 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 			clear();
 		});
 	}
-	$input.keyup(function() {
+	/*
+	$input.unbind().keyup(function() {
 		onNewText.call(this);
+	});
+	*/
+	$input.unbind();
+	$input.blur(function(){
+		LOG.info('blur', this);
+		$input.unbind('keyup');
+	});
+	$input.focus(function(){
+		LOG.info('focus', this);
+		$input.unbind('keyup');
+		$input.keyup(function() {
+			onNewText.call(this);
+		});
 	});
 
 	/**
@@ -75,7 +89,7 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 	/**
 	 * Insert text of choosen item.
 	 */
-	function onSelect() {
+	function onSelect(event) {
 		var text = $(this).text();
 		if (_self.parseSelected) {
 			text = _self.parseSelected(text);
@@ -83,9 +97,14 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 		LOG.info('select', text);
 		$input.val(text);
 		clear();
+		event.preventDefault();
+		event.stopPropagation();
 	}
 
 	var escapeRegExp = /[-[\]{}()*+?.,\\^$|#\s]/g;
+
+	// previous text value in user input
+	var prevValue = "";
 
 	/**
 	 * Make an AJAX call when new text is in the input.
@@ -94,9 +113,14 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 	 */
 	function onNewText() {
 		var value = this.value;
+		// avoid running when e.g. shift/home were pressed (and nothing actully changed)
+		if (prevValue === value) {
+			return;
+		}
 		if (value.length < _self.minLength) {
 			return;
 		}
+		prevValue = value;
 		if (value in cache) {
 			renderList(cache[value], value);
 			return;
@@ -132,7 +156,7 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 			.listview("refresh")
 			.trigger("updatelayout")
 		;
-		$('li', $ul).click(onSelect);
+		$('li', $ul).unbind().click(onSelect);
 	}
 	/**
 	 * Escape HTML special characters.
