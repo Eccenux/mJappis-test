@@ -145,7 +145,7 @@ window.mJappisApplication.i18n.pl = {"":""
 {
 	$mJ.storage = $mJ.storage || {};
 // EOC
-	$mJ.storage.storageKey = '[should be unique among apps from the same domain]Data';
+	$mJ.storage.storageKey = 'TestProjectData';
 // EOC
 	$mJ.storage.schema =
 	{
