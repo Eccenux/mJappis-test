@@ -92,3 +92,41 @@
 
 })(jQuery, window.mJappisApplication);
 // settings.js, EOF
+// start.js, line#0
+
+// EOC
+// EOC
+(function($, $mJ)
+{
+
+	$(document).on("pageinit", "#page-search,#page-start", function() {
+		var helper = new AutocompleteHelper($,
+			$(".autocomplete", this),
+			$("[name=query]", this),
+			$("[name=query]+.ui-input-clear,[name=search]", this),
+			deferredGet
+		);
+		helper.parseSelected = function(text) {
+			return '"' + text + '"';
+		};
+		function deferredGet(text)
+		{
+			return loadHintsMock(text);
+		}
+		$(".autocomplete", this).addClass('has-helper').data('helper', helper);
+	});
+// EOC
+	function loadHintsMock (text) {
+		var deferredExec = new jQuery.Deferred ();
+
+		var data = [
+			'Test',
+			'Data test',
+			'More testing'
+		];
+		deferredExec.resolve(data);
+
+		return deferredExec.promise();
+	}
+})(jQuery, window.mJappisApplication);
+// start.js, EOF

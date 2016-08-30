@@ -65,8 +65,17 @@
 	</div><!-- /header -->
 
 	<div data-role="content">
-		<span data-lang="en">Hello mJappis world!</span>
-		<span data-lang="pl">Witaj &#347;wiecie mJappis!</span>
+		<!-- search-box -->
+		<div>
+			<form id="main-search">
+				<div data-role="controlgroup" data-type="horizontal" class="controlgroup-full search-group no-search-icon">
+					<input type="search" name="query" value="" autocomplete="off" data-wrapper-class="controlgroup-textinput">
+					<a href="#page-searchOptions" class="ui-btn ui-icon-gear ui-btn-icon-notext">Options</a>
+					<input type="button" name="search" data-icon="search" data-wrapper-class="ui-btn-icon-notext" value="search">
+				</div>
+			</form>
+			<ul class="autocomplete search" data-role="listview" data-inset="true" data-filter="false"></ul>
+		</div>
 	</div><!-- /content -->
 
 <div data-role="footer" data-position="fixed" data-id="main-navi" data-position-setup="static">
@@ -276,6 +285,31 @@
 		but moving between long and short pages might look akward.
 -->
 <!-- /footer -->
+
+<!--
+	Search options page
+-->
+<div data-role="dialog" id="page-searchOptions">
+
+	<div data-role="header">
+		<a href="index.html" data-icon="delete" data-rel="back">Cancel</a>
+		<h1>Options</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<form name="main">
+			<label for="searchOptions-indexName_1472482968849">Search index:</label>
+			<select id="searchOptions-indexName_1472482968849" name="searchOptions-indexName">
+				<option value="any" selected>All</option>
+				<option value="author">Author</option>
+				<option value="title">Title</option>
+				<option value="subject">Subject</option>
+			</select>
+			<input data-theme="b" type="submit" name="search-options-submit" id="search-options-submit_1472482968849" value="Save">
+		</form>
+	</div><!-- /content -->
+
+</div><!-- /page -->
 
 
 
