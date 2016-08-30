@@ -54,4 +54,13 @@ $buildPackages['app']['packages']['index']['src'] = array(
 	'proxies/*',
 );
 /**/
+
+// CSS with calc and/or any other poly-senstivie stuff
+$buildPackages['css']['packages']['calc'] = array(
+	'debug' => true,	// unpack in browser by default
+	'dest' => 'css/package.calc.css',
+	'src' => array(
+		'search-group',
+	),
+);
 ?>

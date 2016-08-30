@@ -41,7 +41,7 @@
 
 	<!-- CSS -->
 	<?=$processor->css('css', 'common')?>
-	<?php /*=$processor->css('css', 'calc', 'data-PolyCalc="1"')*/ ?>
+	<?=$processor->css('css', 'calc', 'data-PolyCalc="1"')?>
 
 	<!-- jQuery and other libs -->
 	<?=$processor->js('libs', 'common')?>
