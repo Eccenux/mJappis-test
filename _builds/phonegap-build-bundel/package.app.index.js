@@ -119,14 +119,10 @@
 	function loadHintsMock (text) {
 		var deferredExec = new jQuery.Deferred ();
 
-		var data = [
-			'Test',
-			'Data test',
-			'More testing',
-			'Test',
-			'Data test',
-			'More testing'
-		];
+		var data = [];
+		for (var i = 0; i < text.length; i++) {
+			data.push('Test ' + i);
+		}
 		deferredExec.resolve(data);
 
 		return deferredExec.promise();
