@@ -63,4 +63,16 @@ $buildPackages['css']['packages']['calc'] = array(
 		'search-group',
 	),
 );
+
+// jquery mobile and it's extensions
+$buildPackages['jqm']['packages'] = array(
+	array(
+		'debug' => true,
+		'dest' => 'package.jqm.js',
+		'src' => array(
+			'base/jquery.mobile',
+		),
+	),
+);
+
 ?>
