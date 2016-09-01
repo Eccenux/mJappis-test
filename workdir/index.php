@@ -7,6 +7,10 @@
 	$processor = new ProcessingHelper($buildPackages, $strBundleRoot);
 	$processingMode = $processor->topSetup();
 
+	if (!empty($_GET['debug'])) {
+		$processor->debugAll = true;
+	}
+
 ?>
 <!DOCTYPE html>
 <!--
