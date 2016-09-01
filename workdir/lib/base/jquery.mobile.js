@@ -11973,12 +11973,25 @@ $.widget( "mobile.controlgroup", $.extend( {
 			// This method is meant to disable zoom while a fixed-positioned toolbar page is visible
 			this._on( page , {
 				"pagebeforeshow": "_handlePageBeforeShow",
-				"webkitAnimationStart":"_handleAnimationStart",
-				"animationstart":"_handleAnimationStart",
-				"updatelayout": "_handleAnimationStart",
+				"webkitAnimationStart":"_handleAnimationStart_webkitAnimationStart",
+				"animationstart":"_handleAnimationStart_animationstart",
+				"updatelayout": "_handleAnimationStart_updatelayout",
 				"pageshow": "_handlePageShow",
 				"pagebeforehide": "_handlePageBeforeHide"
 			});
+		},
+
+		_handleAnimationStart_webkitAnimationStart: function( ) {
+			debugWidget('_handleAnimationStart_webkitAnimationStart', this)
+			this._handleAnimationStart();
+		},
+		_handleAnimationStart_animationstart: function( ) {
+			debugWidget('_handleAnimationStart_animationstart', this)
+			this._handleAnimationStart();
+		},
+		_handleAnimationStart_updatelayout: function( ) {
+			debugWidget('_handleAnimationStart_updatelayout', this)
+			this._handleAnimationStart();
 		},
 
 		_handlePageBeforeShow: function( ) {
@@ -11993,7 +12006,6 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		_handleAnimationStart: function() {
-			debugWidget('_handleAnimationStart', this)
 			if ( this.options.updatePagePadding ) {
 				this.updatePagePadding( ( !!this.page )? this.page: ".ui-page-active" );
 			}
