@@ -5959,6 +5959,7 @@ $.widget( "mobile.page", {
 		beforeStartOut: function() {},
 
 		doneIn: function() {
+			debugWidgetVar('doneIn', '$to', this.$to)
 			this.beforeDoneIn();
 
 			this.$to.removeClass( "out in reverse " + this.name ).height( "" );
@@ -5977,6 +5978,7 @@ $.widget( "mobile.page", {
 		},
 
 		doneOut: function( screenHeight, reverseClass, none, preventFocus ) {
+			debugWidgetVar('doneOut', 'form', this.$from)
 			this.beforeDoneOut();
 			this.startIn( screenHeight, reverseClass, none, preventFocus );
 		},
@@ -6051,6 +6053,7 @@ $.widget( "mobile.page", {
 		},
 
 		transition: function() {
+			debugWidgetVar('transition', 'form', this.$from)
 			// NOTE many of these could be calculated/recorded in the constructor, it's my
 			//      opinion that binding them as late as possible has value with regards to
 			//      better transitions with fewer bugs. Ie, it's not guaranteed that the
@@ -6086,12 +6089,14 @@ $.widget( "mobile.page", {
 		sequential: true,
 
 		beforeDoneOut: function() {
+			debugWidgetVar('SerialTransition.beforeDoneOut', 'form', this.$from)
 			if ( this.$from ) {
 				this.cleanFrom();
 			}
 		},
 
 		beforeStartOut: function( screenHeight, reverseClass, none ) {
+			debugWidgetVar('SerialTransition.beforeStartOut', 'form', this.$from)
 			this.$from.animationComplete($.proxy(function() {
 				this.doneOut( screenHeight, reverseClass, none );
 			}, this ));
@@ -6111,12 +6116,14 @@ $.widget( "mobile.page", {
 		sequential: false,
 
 		beforeDoneIn: function() {
+			debugWidgetVar('ConcurrentTransition.beforeDoneIn', 'form', this.$from)
 			if ( this.$from ) {
 				this.cleanFrom();
 			}
 		},
 
 		beforeStartOut: function( screenHeight, reverseClass, none ) {
+			debugWidgetVar('ConcurrentTransition.beforeStartOut', 'form', this.$from)
 			this.doneOut( screenHeight, reverseClass, none );
 		}
 	});
