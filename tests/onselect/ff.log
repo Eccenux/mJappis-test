@@ -15,7 +15,6 @@ Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead jq
 [widget-debug] [_handlePageBeforeShow] element:  [dataid=main-navi]
 [widget-debug] [_handlePageBeforeShow] page:  #page-start
 [widget-debug] [transition] form:  (undefined) undefined
-[widget-debug] [transition] none:  (boolean) true
 [widget-debug] [doneOut] form:  (undefined) undefined
 [widget-debug] [SerialTransition.beforeDoneOut] form:  (undefined) undefined
 [widget-debug] [doneIn] $to:  #page-start
@@ -30,7 +29,6 @@ Metoda getPreventDefault() jest przestarza³a.  Nale¿y u¿ywaæ defaultPrevented. j
 [widget-debug] [_handlePageBeforeHide] element:  [dataid=main-navi]
 [widget-debug] [_handlePageBeforeHide] page:  #page-start
 [widget-debug] [transition] form:  #page-start
-[widget-debug] [transition] none:  (boolean) false
 [widget-debug] [SerialTransition.beforeStartOut] form:  #page-start
 [widget-debug] [_handleAnimationStart_animationstart] element:  [dataid=main-navi]
 [widget-debug] [_handleAnimationStart_animationstart] page:  #page-start
@@ -43,7 +41,6 @@ Metoda getPreventDefault() jest przestarza³a.  Nale¿y u¿ywaæ defaultPrevented. j
 [widget-debug] [_handlePageBeforeShow] element:  [dataid=main-navi]
 [widget-debug] [_handlePageBeforeShow] page:  #page-start
 [widget-debug] [transition] form:  #page-searchOptions
-[widget-debug] [transition] none:  (boolean) false
 [widget-debug] [SerialTransition.beforeStartOut] form:  #page-searchOptions
 [widget-debug] [doneOut] form:  #page-searchOptions
 [widget-debug] [SerialTransition.beforeDoneOut] form:  #page-searchOptions
