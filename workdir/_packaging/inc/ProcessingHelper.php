@@ -17,6 +17,12 @@ class ProcessingHelper
 	private $baseScriptDir = '.';
 
 	/**
+	 * If true then all packages will be unpacked and ready for debugging.
+	 * @var type
+	 */
+	public $debugAll = false;
+
+	/**
 	 * Modes
 	 * <ul>
 	 * <li>'pgb-bundle' - PhoneGap bundle (building from command line).
@@ -122,7 +128,7 @@ class ProcessingHelper
 		}
 		// return as single package
 		$attrs = 'rel="stylesheet"' . (empty($extraAttributes) ? '' : ' '.$extraAttributes);
-		if ($this->mode != 'dynamic' || empty($package['debug'])) {
+		if (!$this->debugAll && ($this->mode != 'dynamic' || empty($package['debug']))) {
 			$href = $this->htmlRelativeBundleRoot . $package['dest'];
 			$html = "<link href=\"$href\" $attrs>";
 		}
@@ -154,7 +160,7 @@ class ProcessingHelper
 		}
 		$attrs = 'type="text/javascript"' . (empty($extraAttributes) ? '' : ' '.$extraAttributes);
 		// return as single package
-		if ($this->mode != 'dynamic' || empty($package['debug'])) {
+		if (!$this->debugAll && ($this->mode != 'dynamic' || empty($package['debug']))) {
 			$href = $this->htmlRelativeBundleRoot . $package['dest'];
 			$html = "<script src=\"$href\" $attrs></script>";
 		}
