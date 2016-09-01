@@ -12073,6 +12073,10 @@ $.widget( "mobile.controlgroup", $.extend( {
 				pHeight = ( !!this.page )? $el.closest( ".ui-page" ).height():$(".ui-page-active").height(),
 				viewportHeight = $.mobile.getScreenHeight();
 
+			debugWidgetVar('_useTransition', 'options.transition', this.options.transition);
+			debugWidgetVar('_useTransition', 'role', this.role);
+			debugWidgetVar('_useTransition', 'height treshold?', scroll + viewportHeight < pHeight - elHeight);
+
 			return !notransition &&
 				( this.options.transition && this.options.transition !== "none" &&
 				(
