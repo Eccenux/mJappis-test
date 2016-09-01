@@ -1,3 +1,5 @@
+Saving logs.
+
 FF
 ------------------
 Select all, copy, paste to file, save.
@@ -7,4 +9,4 @@ Remove:
 
 Chrome
 ------------------
-Save as on console.
+`Save as` on console.
