@@ -1,3 +1,31 @@
+function getElementInfo(element) {
+	if (typeof(element) !== 'object' || element === null) {
+		return "("+ typeof(element) +") " + JSON.stringify(element);
+	}
+	// jquery
+	if ('attr' in element) {
+		var id = element.attr('id');
+		if (id && id.length) {
+			return "#"+id;
+		}
+		var id = element.data('id');
+		if (id && id.length) {
+			return "[dataid="+id+"]";
+		}
+	}
+	return element;
+}
+
+function debugWidget(functionName, _this) {
+	var tags = '[widget-debug] [' + functionName + ']';
+	console.log(tags + ' element: ', getElementInfo(_this.element));
+	console.log(tags + ' page: ', getElementInfo(_this.page));
+}
+function debugWidgetVar(functionName, name, variable) {
+	var tags = '[widget-debug] [' + functionName + ']';
+	console.log(tags + ' '+name+': ', getElementInfo(variable));
+}
+
 /*!
 * jQuery Mobile 1.4.0
 * Git HEAD hash: f09aae0e035d6805e461a7be246d04a0dbc98f69 <> Date: Thu Dec 19 2013 17:34:22 UTC
@@ -5918,6 +5946,8 @@ $.widget( "mobile.page", {
 		},
 
 		cleanFrom: function() {
+			debugWidgetVar('cleanFrom', 'name', this.name);
+			debugWidgetVar('cleanFrom', 'form', this.$from);
 			this.$from
 				.removeClass( $.mobile.activePageClass + " out in reverse " + this.name )
 				.height( "" );
@@ -11892,11 +11922,13 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		_setOptions: function( o ) {
+			debugWidget('_setOptions', this)
 			if ( o.position === "fixed" && this.options.position !== "fixed" ) {
 				this._makeFixed();
 			}
 			if ( this.options.position === "fixed" && !this.options.supportBlacklist() ) {
 				var $page = ( !!this.page )? this.page: ( $(".ui-page-active").length > 0 )? $(".ui-page-active"): $(".ui-page").eq(0);
+				debugWidgetVar('_setOptions', '$page', $page);
 
 				if ( o.fullscreen !== undefined) {
 					if ( o.fullscreen ) {
@@ -11928,6 +11960,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 
 		_bindPageEvents: function() {
 			var page = ( !!this.page )? this.element.closest( ".ui-page" ): this.document;
+			debugWidget('_bindPageEvents', this)
 			//page event bindings
 			// Fixed toolbars require page zoom to be disabled, otherwise usability issues crop up
 			// This method is meant to disable zoom while a fixed-positioned toolbar page is visible
@@ -11942,6 +11975,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		_handlePageBeforeShow: function( ) {
+			debugWidget('_handlePageBeforeShow', this)
 			var o = this.options;
 			if ( o.disablePageZoom ) {
 				$.mobile.zoom.disable( true );
@@ -11952,12 +11986,14 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		_handleAnimationStart: function() {
+			debugWidget('_handleAnimationStart', this)
 			if ( this.options.updatePagePadding ) {
 				this.updatePagePadding( ( !!this.page )? this.page: ".ui-page-active" );
 			}
 		},
 
 		_handlePageShow: function() {
+			debugWidget('_handlePageShow', this)
 			this.updatePagePadding( ( !!this.page )? this.page: ".ui-page-active" );
 			if ( this.options.updatePagePadding ) {
 				this._on( this.window, { "throttledresize": "updatePagePadding" } );
@@ -11965,6 +12001,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		_handlePageBeforeHide: function( e, ui ) {
+			debugWidget('_handlePageBeforeHide', this)
 			var o = this.options,
 				thisFooter, thisHeader, nextFooter, nextHeader;
 
@@ -12027,6 +12064,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		show: function( notransition ) {
+			debugWidget('show', this)
 			var hideClass = "ui-fixed-hidden",
 				$el = this.element;
 
@@ -12045,6 +12083,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		hide: function( notransition ) {
+			debugWidget('hide', this)
 			var hideClass = "ui-fixed-hidden",
 				$el = this.element,
 				// if it's a slide transition, our new transitions need the reverse class as well to slide outward
@@ -12069,6 +12108,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		_bindToggleHandlers: function() {
+			debugWidget('_bindToggleHandlers', this)
 			var self = this,
 				o = self.options,
 				delayShow, delayHide,
@@ -12078,6 +12118,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 			// tap toggle
 			page
 				.bind( "vclick", function( e ) {
+					debugWidget('_bindToggleHandlers vclick', self)
 					if ( o.tapToggle && !$( e.target ).closest( o.tapToggleBlacklist ).length ) {
 						self.toggle();
 					}
@@ -12095,6 +12136,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 						// Also use a delay for hiding the toolbars because on Android native browser focusin is direclty followed
 						// by a focusout when a native selects opens and the other way around when it closes.
 						if ( e.type === "focusout" && !isVisible ) {
+							debugWidget('_bindToggleHandlers focusout', self)
 							isVisible = true;
 							//wait for the stack to unwind and see if we have jumped to another input
 							clearTimeout( delayHide );
@@ -12102,6 +12144,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 								self.show();
 							}, 0 );
 						} else if ( e.type === "focusin" && !!isVisible ) {
+							debugWidget('_bindToggleHandlers focusin', self)
 							//if we have jumped to another input clear the time out to cancel the show.
 							clearTimeout( delayShow );
 							isVisible = false;
