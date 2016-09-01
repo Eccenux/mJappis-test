@@ -1,0 +1,252 @@
+[mJ.setup] will run controller or attempt it
+[widget-debug] [_setOptions] element:  [div.ui-header, context: div.ui-header]
+[widget-debug] [_setOptions] page:  #page-start
+[widget-debug] [_setOptions] element:  [dataid=main-navi]
+[widget-debug] [_setOptions] page:  #page-start
+[widget-debug] [_setOptions] $page:  #page-start
+[widget-debug] [_bindPageEvents] element:  [dataid=main-navi]
+[widget-debug] [_bindPageEvents] page:  #page-start
+[widget-debug] [_bindToggleHandlers] element:  [dataid=main-navi]
+[widget-debug] [_bindToggleHandlers] page:  #page-start
+[widget-debug] [_setOptions] element:  [dataid=main-navi]
+[widget-debug] [_setOptions] page:  #page-start
+[widget-debug] [_setOptions] $page:  #page-start
+[widget-debug] [_handlePageBeforeShow] element:  [dataid=main-navi]
+[widget-debug] [_handlePageBeforeShow] page:  #page-start
+[widget-debug] [transition] form:  (undefined) undefined
+[widget-debug] [doneOut] form:  (undefined) undefined
+[widget-debug] [SerialTransition.beforeDoneOut] form:  (undefined) undefined
+[widget-debug] [doneIn] $to:  #page-start
+[widget-debug] [_handlePageShow] element:  [dataid=main-navi]
+[widget-debug] [_handlePageShow] page:  #page-start
+[widget-debug] [_bindToggleHandlers vclick] element:  [dataid=main-navi]
+[widget-debug] [_bindToggleHandlers vclick] page:  #page-start
+[mJ.setup] will run controller or attempt it
+[widget-debug] [_setOptions] element:  [div.ui-header, context: div.ui-header]
+[widget-debug] [_setOptions] page:  #page-searchOptions
+[widget-debug] [_handlePageBeforeHide] element:  [dataid=main-navi]
+[widget-debug] [_handlePageBeforeHide] page:  #page-start
+[widget-debug] [transition] form:  #page-start
+[widget-debug] [SerialTransition.beforeStartOut] form:  #page-start
+[widget-debug] [_handleAnimationStart_animationstart] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_animationstart] page:  #page-start
+[widget-debug] [doneOut] form:  #page-start
+[widget-debug] [SerialTransition.beforeDoneOut] form:  #page-start
+[widget-debug] [cleanFrom] name:  (string) "pop"
+[widget-debug] [cleanFrom] form:  #page-start
+[widget-debug] [doneIn] $to:  #page-searchOptions
+[mJ.setup] will run controller or attempt it
+[widget-debug] [_handlePageBeforeShow] element:  [dataid=main-navi]
+[widget-debug] [_handlePageBeforeShow] page:  #page-start
+[widget-debug] [transition] form:  #page-searchOptions
+[widget-debug] [SerialTransition.beforeStartOut] form:  #page-searchOptions
+[widget-debug] [doneOut] form:  #page-searchOptions
+[widget-debug] [SerialTransition.beforeDoneOut] form:  #page-searchOptions
+[widget-debug] [cleanFrom] name:  (string) "pop"
+[widget-debug] [cleanFrom] form:  #page-searchOptions
+[widget-debug] [_handleAnimationStart_animationstart] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_animationstart] page:  #page-start
+[widget-debug] [doneIn] $to:  #page-start
+[widget-debug] [_handlePageShow] element:  [dataid=main-navi]
+[widget-debug] [_handlePageShow] page:  #page-start
+[widget-debug] [_bindToggleHandlers vclick] element:  [dataid=main-navi]
+[widget-debug] [_bindToggleHandlers vclick] page:  #page-start
+[widget-debug] [_bindToggleHandlers focusin] element:  [dataid=main-navi]
+[widget-debug] [_bindToggleHandlers focusin] page:  #page-start
+[AutocompleteHelper] focus{}
+[widget-debug] [hide] element:  [dataid=main-navi]
+[widget-debug] [hide] page:  #page-start
+[widget-debug] [_useTransition] options.transition:  (string) "slide"
+[widget-debug] [_useTransition] role:  (string) "footer"
+[widget-debug] [_useTransition] height treshold?:  (boolean) false
+[AutocompleteHelper] list["Test 0",
+"Test 1"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4",
+"Test 5"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4",
+"Test 5",
+"Test 6"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4",
+"Test 5",
+"Test 6",
+"Test 7"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4",
+"Test 5",
+"Test 6",
+"Test 7",
+"Test 8"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4",
+"Test 5",
+"Test 6",
+"Test 7",
+"Test 8",
+"Test 9"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4",
+"Test 5",
+"Test 6",
+"Test 7",
+"Test 8",
+"Test 9",
+"Test 10"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4",
+"Test 5",
+"Test 6",
+"Test 7",
+"Test 8",
+"Test 9",
+"Test 10",
+"Test 11"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4",
+"Test 5",
+"Test 6",
+"Test 7",
+"Test 8",
+"Test 9",
+"Test 10",
+"Test 11",
+"Test 12"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4",
+"Test 5",
+"Test 6",
+"Test 7",
+"Test 8",
+"Test 9",
+"Test 10",
+"Test 11",
+"Test 12",
+"Test 13"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[AutocompleteHelper] list["Test 0",
+"Test 1",
+"Test 2",
+"Test 3",
+"Test 4",
+"Test 5",
+"Test 6",
+"Test 7",
+"Test 8",
+"Test 9",
+"Test 10",
+"Test 11",
+"Test 12",
+"Test 13",
+"Test 14"]
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
+[widget-debug] [_bindToggleHandlers focusout] element:  [dataid=main-navi]
+[widget-debug] [_bindToggleHandlers focusout] page:  #page-start
+[AutocompleteHelper] blur{}
+[widget-debug] [show] element:  [dataid=main-navi]
+[widget-debug] [show] page:  #page-start
+[widget-debug] [_useTransition] options.transition:  (string) "slide"
+[widget-debug] [_useTransition] role:  (string) "footer"
+[widget-debug] [_useTransition] height treshold?:  (boolean) true
+[widget-debug] [_handleAnimationStart_animationstart] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_animationstart] page:  #page-start
+[widget-debug] [doneOut] form:  #page-start
+[widget-debug] [SerialTransition.beforeDoneOut] form:  #page-start
+[widget-debug] [cleanFrom] name:  (string) "pop"
+[widget-debug] [cleanFrom] form:  #page-start
+[widget-debug] [doneIn] $to:  #page-start
+[widget-debug] [doneIn] $to:  #page-searchOptions
