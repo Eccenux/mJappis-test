@@ -25,8 +25,11 @@
 [mJ.setup] will run controller or attempt it
 [widget-debug] [_setOptions] element:  [div.ui-header, context: div.ui-header]
 [widget-debug] [_setOptions] page:  #page-searchOptions
+[dialog-debug] [_create] element:  #page-searchOptions
+[dialog-debug] [_setCloseBtn] element:  #page-searchOptions
 [widget-debug] [_handlePageBeforeHide] element:  [dataid=main-navi]
 [widget-debug] [_handlePageBeforeHide] page:  #page-start
+[dialog-debug] [_handlePageBeforeShow] element:  #page-searchOptions
 [widget-debug] [transition] form:  #page-start
 [widget-debug] [SerialTransition.beforeStartOut] form:  #page-start
 [widget-debug] [_handleAnimationStart_animationstart] element:  [dataid=main-navi]
@@ -36,7 +39,9 @@
 [widget-debug] [cleanFrom] name:  (string) "pop"
 [widget-debug] [cleanFrom] form:  #page-start
 [widget-debug] [doneIn] $to:  #page-searchOptions
+[dialog-debug] [_handleVClickSubmit] element:  #page-searchOptions
 [mJ.setup] will run controller or attempt it
+[dialog-debug] [_handlePageBeforeHide] element:  #page-searchOptions
 [widget-debug] [_handlePageBeforeShow] element:  [dataid=main-navi]
 [widget-debug] [_handlePageBeforeShow] page:  #page-start
 [widget-debug] [transition] form:  #page-searchOptions
