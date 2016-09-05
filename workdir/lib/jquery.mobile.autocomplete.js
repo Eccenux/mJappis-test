@@ -39,15 +39,14 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 		onNewText.call(this);
 	});
 	*/
-	$input.unbind();
-	$input.blur(function(){
+	$input.off('.AutocompleteHelper');
+	$input.on('blur.AutocompleteHelper', function(){
 		LOG.info('blur', this);
-		$input.unbind('keyup');
+		$input.off('keyup.AutocompleteHelper');
 	});
-	$input.focus(function(){
+	$input.on('focus.AutocompleteHelper', function(){
 		LOG.info('focus', this);
-		$input.unbind('keyup');
-		$input.keyup(function() {
+		$input.off('keyup.AutocompleteHelper').on('keyup.AutocompleteHelper', function() {
 			onNewText.call(this);
 		});
 	});
