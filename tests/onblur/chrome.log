@@ -11,6 +11,7 @@
 [widget-debug] [_setOptions] element:  [dataid=main-navi]
 [widget-debug] [_setOptions] page:  #page-start
 [widget-debug] [_setOptions] $page:  #page-start
+[widget-debug] [_workarounds] os:  (string) "android"
 [widget-debug] [_handlePageBeforeShow] element:  [dataid=main-navi]
 [widget-debug] [_handlePageBeforeShow] page:  #page-start
 [widget-debug] [transition] form:  (undefined) undefined
