@@ -177,3 +177,20 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 		return text;
 	};
 }
+
+/**
+ * Add listview as a blacklist element for toolbar show/hide.
+ * 
+ * @param {jQuery} $ The jQuery object.
+ */
+(function( $ ) {
+	$(document).bind("mobileinit", function()
+	{
+		$.widget( "mobile.toolbar", $.mobile.toolbar, {
+			_create: function() {
+				this.options.tapToggleBlacklist += ', .ui-listview';
+				this._super();
+			}
+		});
+	});
+})( jQuery );
