@@ -11,6 +11,7 @@
 [widget-debug] [_setOptions] element:  [dataid=main-navi]
 [widget-debug] [_setOptions] page:  #page-start
 [widget-debug] [_setOptions] $page:  #page-start
+[widget-debug] [_workarounds] os:  (string) "android"
 [widget-debug] [_handlePageBeforeShow] element:  [dataid=main-navi]
 [widget-debug] [_handlePageBeforeShow] page:  #page-start
 [widget-debug] [transition] form:  (undefined) undefined
@@ -130,19 +131,6 @@
 "Test 5",
 "Test 6",
 "Test 7",
-"Test 8"]
-[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
-[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
-[widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
-[widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
-[AutocompleteHelper] list["Test 0",
-"Test 1",
-"Test 2",
-"Test 3",
-"Test 4",
-"Test 5",
-"Test 6",
-"Test 7",
 "Test 8",
 "Test 9"]
 [widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
@@ -247,13 +235,13 @@
 [AutocompleteHelper] select"Test 0"
 [widget-debug] [_handleAnimationStart_updatelayout] element:  [dataid=main-navi]
 [widget-debug] [_handleAnimationStart_updatelayout] page:  #page-start
-[widget-debug] [_handleAnimationStart_animationstart] element:  [dataid=main-navi]
-[widget-debug] [_handleAnimationStart_animationstart] page:  #page-start
 [widget-debug] [show] element:  [dataid=main-navi]
 [widget-debug] [show] page:  #page-start
 [widget-debug] [_useTransition] options.transition:  (string) "slide"
 [widget-debug] [_useTransition] role:  (string) "footer"
 [widget-debug] [_useTransition] height treshold?:  (boolean) false
+[widget-debug] [_handleAnimationStart_animationstart] element:  [dataid=main-navi]
+[widget-debug] [_handleAnimationStart_animationstart] page:  #page-start
 [widget-debug] [doneOut] form:  #page-start
 [widget-debug] [SerialTransition.beforeDoneOut] form:  #page-start
 [widget-debug] [cleanFrom] name:  (string) "pop"
