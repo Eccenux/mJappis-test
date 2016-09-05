@@ -2781,6 +2781,7 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 {
 	var _self = this;
 	var LOG = new Logger('AutocompleteHelper');
+	this._LOG = LOG;
 	//LOG.enabled = false;
 
 	// bind
@@ -2789,17 +2790,15 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 			clear();
 		});
 	}
-// EOC
-	$input.unbind();
-	$input.blur(function(){
+	$input.off('.AutocompleteHelper');
+	$input.on('blur.AutocompleteHelper', function(){
 		LOG.info('blur', this);
-		$input.unbind('keyup');
+		$input.off('keyup.AutocompleteHelper');
 	});
-	$input.focus(function(){
+	$input.on('focus.AutocompleteHelper', function(){
 		LOG.info('focus', this);
-		$input.unbind('keyup');
-		$input.keyup(function() {
-			onNewText.call(this);
+		$input.off('keyup.AutocompleteHelper').on('keyup.AutocompleteHelper', function() {
+			_self._onNewText(this);
 		});
 	});
 // EOC
@@ -2809,93 +2808,104 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 // EOC
 	this.caching = false;
 
-	var cache = {};
-// EOC
-	this.clearCache = function() {
-		cache = {};
-	};
-// EOC
-	function clear() {
-		$ul.html( "" );
-		$ul.listview( "refresh" );
-	}
-	// allow public access
-	this.clearList = clear;
-// EOC
-	function onSelect(event) {
-		var text = $(this).text();
-		if (_self.parseSelected) {
-			text = _self.parseSelected(text);
-		}
-		LOG.info('select', text);
-		$input.val(text);
-		clear();
-		event.preventDefault();
-		event.stopPropagation();
-	}
-
-	var escapeRegExp = /[-[\]{}()*+?.,\\^$|#\s]/g;
-
-	// previous text value in user input
-	var prevValue = "";
-// EOC
-	function onNewText() {
-		var value = this.value;
-		// avoid running when e.g. shift/home were pressed (and nothing actully changed)
-		if (prevValue === value) {
-			return;
-		}
-		if (value.length < _self.minLength) {
-			return;
-		}
-		prevValue = value;
-		if (value in cache) {
-			renderList(cache[value], value);
-			return;
-		}
-		deferredGet(value)
-		.done(function(list){
-			LOG.info('list', list);
-			cache[value] = list;
-			renderList(list, value);
-		});
-	}
-// EOC
-	function renderList(list, text) {
-		var html = "";
-		//var html = (list.length < 1 ? "" : "<li>" + list.join('</li><li>') + "</li>");
-		if (list.length) {
-			var parsedList = [];	// MUST copy so that the list remain unchanged
-			var re = new RegExp("(" + htmlSpecialChars(text).replace(escapeRegExp, "\\$&") + ")", 'gi');
-			for (var i=0; i<list.length; i++) {
-				var value = htmlSpecialChars(list[i]);
-				value = value.replace(re, '<b>$1</b>');
-				parsedList.push(value);
-			}
-			html = "<li>" + parsedList.join('</li><li>') + "</li>";
-		}
-		$ul
-			.html(html)
-			.listview("refresh")
-			.trigger("updatelayout")
-		;
-		$('li', $ul).unbind().click(onSelect);
-	}
-// EOC
-	function htmlSpecialChars(text) {
-		if (text === null) {
-			return "";
-		}
-		text = text.toString()
-			.replace(/&/g, '&amp;')
-			.replace(/>/g, '&gt;')
-			.replace(/</g, '&lt;')
-			.replace(/'/g, '&#039;')
-			.replace(/"/g, '&quot;')
-		;
-		return text;
-	};
+	// mappping some params
+	this._$ = $;
+	this._$ul = $ul;
+	this._$input = $input;
+	this._deferredGet = deferredGet;
 }
+
+AutocompleteHelper.prototype._cache  = {};
+// EOC
+AutocompleteHelper.prototype.clearCache = function() {
+	this._cache = {};
+};
+// EOC
+AutocompleteHelper.prototype._clear = function() {
+	this._$ul.html( "" );
+	this._$ul.listview( "refresh" );
+};
+// allow public access
+AutocompleteHelper.prototype.clearList = AutocompleteHelper.prototype._clear;
+// EOC
+AutocompleteHelper.prototype._onSelect = function(event, listElement) {
+	var text = this._$(listElement).text();
+	if (this.parseSelected) {
+		text = this.parseSelected(text);
+	}
+	this._LOG.info('select', text);
+	this._$input.val(text);
+	this._clear();
+	event.preventDefault();
+	event.stopPropagation();
+};
+
+AutocompleteHelper.prototype._escapeRegExp = /[-[\]{}()*+?.,\\^$|#\s]/g;
+
+// previous text value in user input
+AutocompleteHelper.prototype._prevValue = "";
+// EOC
+AutocompleteHelper.prototype._onNewText = function (input) {
+	var value = input.value;
+	var _self = this;
+	// avoid running when e.g. shift/home were pressed (and nothing actully changed)
+	if (_self._prevValue === value) {
+		return;
+	}
+	if (value.length < _self.minLength) {
+		return;
+	}
+	_self._prevValue = value;
+	if (value in _self._cache) {
+		_self._renderList(_self._cache[value], value);
+		return;
+	}
+	_self._deferredGet(value)
+		.done(function(list){
+			_self._LOG.info('list', list);
+			_self._cache[value] = list;
+			_self._renderList(list, value);
+		})
+	;
+};
+// EOC
+AutocompleteHelper.prototype._renderList = function (list, text) {
+	var _self = this;
+	var html = "";
+	//var html = (list.length < 1 ? "" : "<li>" + list.join('</li><li>') + "</li>");
+	if (list.length) {
+		var parsedList = [];	// MUST copy so that the list remain unchanged
+		var re = new RegExp("(" + _self._htmlSpecialChars(text).replace(_self._escapeRegExp, "\\$&") + ")", 'gi');
+		for (var i=0; i<list.length; i++) {
+			var value = _self._htmlSpecialChars(list[i]);
+			value = value.replace(re, '<b>$1</b>');
+			parsedList.push(value);
+		}
+		html = "<li>" + parsedList.join('</li><li>') + "</li>";
+	}
+	_self._$ul
+		.html(html)
+		.listview("refresh")
+		.trigger("updatelayout")
+	;
+	this._$('li', _self._$ul).unbind().click(function(event) {
+		_self._onSelect(event, this);
+	});
+};
+// EOC
+AutocompleteHelper.prototype._htmlSpecialChars = function (text) {
+	if (text === null) {
+		return "";
+	}
+	text = text.toString()
+		.replace(/&/g, '&amp;')
+		.replace(/>/g, '&gt;')
+		.replace(/</g, '&lt;')
+		.replace(/'/g, '&#039;')
+		.replace(/"/g, '&quot;')
+	;
+	return text;
+};
 // EOC
 (function( $ ) {
 	$(document).bind("mobileinit", function()
