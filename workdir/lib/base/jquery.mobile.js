@@ -12186,6 +12186,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		_destroy: function() {
+			debugWidget('base destroy', this)
 			var $el = this.element,
 				header = $el.hasClass( "ui-header" );
 
@@ -12222,6 +12223,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 			} else {
 				return;
 			}
+			debugWidgetVar('_workarounds', 'os', os)
 			//check os version if it dosent match one with workarounds return
 			if ( os === "ios" ) {
 				//iOS  workarounds
@@ -12251,6 +12253,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 			var self = this;
 			//bind to scrollstop and check if the toolbars are correctly positioned
 			this._on( this.window, { scrollstop: function() {
+				debugWidget('_bindScrollWorkaround', self)
 				var viewportOffset = self._viewportOffset();
 				//check if the header is visible and if its in the right place
 				if ( viewportOffset > 2 && self._visible ) {
@@ -12265,6 +12268,8 @@ $.widget( "mobile.controlgroup", $.extend( {
 		//setting the li's to -webkit-transform:translate3d(0,0,0); solves this problem to avoide potential issues in other
 		//platforms we scope this with the class ui-android-2x-fix
 		_bindListThumbWorkaround: function() {
+			debugWidget('_bindListThumbWorkaround', this)
+			debugWidgetVar('_bindListThumbWorkaround', 'closest.page', this.element.closest( ".ui-page" ))
 			this.element.closest( ".ui-page" ).addClass( "ui-android-2x-fixed" );
 		},
 		//this addresses issues #4337 Fixed header problem after scrolling content on iOS and Android
@@ -12273,6 +12278,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 		//adding 1px of padding to the bottom then removing it causes a "redraw"
 		//which positions the toolbars correctly (they will always be visually correct)
 		_triggerRedraw: function() {
+			debugWidget('_triggerRedraw', this)
 			var paddingBottom = parseFloat( $( ".ui-page-active" ).css( "padding-bottom" ) );
 			//trigger page redraw to fix incorrectly positioned fixed elements
 			$( ".ui-page-active" ).css( "padding-bottom", ( paddingBottom + 1 ) + "px" );
@@ -12284,6 +12290,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		destroy: function() {
+			debugWidget('workarounds destroy', this)
 			this._super();
 			//Remove the class we added to the page previously in android 2.x
 			this.element.closest( ".ui-page-active" ).removeClass( "ui-android-2x-fix" );
