@@ -4562,6 +4562,8 @@ $.widget( "mobile.page", {
 		_handleDialog: function( changePageOptions, data ) {
 			var to, active, activeContent = this.getActivePage();
 
+			debugWidgetVar('_handleDialog', 'activeContent', activeContent)
+
 			// If current active page is not a dialog skip the dialog and continue
 			// in the same direction
 			if ( activeContent && !activeContent.hasClass( "ui-dialog" ) ) {
