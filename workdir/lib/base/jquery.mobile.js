@@ -21,6 +21,10 @@ function debugWidget(functionName, _this) {
 	console.log(tags + ' element: ', getElementInfo(_this.element));
 	console.log(tags + ' page: ', getElementInfo(_this.page));
 }
+function debugDialogWidget(functionName, _this) {
+	var tags = '[dialog-debug] [' + functionName + ']';
+	console.log(tags + ' element: ', getElementInfo(_this.element));
+}
 function debugWidgetVar(functionName, name, variable) {
 	var tags = '[widget-debug] [' + functionName + ']';
 	console.log(tags + ' '+name+': ', getElementInfo(variable));
@@ -6431,6 +6435,7 @@ $.widget( "mobile.dialog", {
 
 	// Override the theme set by the page plugin on pageshow
 	_handlePageBeforeShow: function() {
+		debugDialogWidget('_handlePageBeforeShow', this)
 		this._isCloseable = true;
 		if ( this.options.overlayTheme ) {
 			this.element
@@ -6440,6 +6445,7 @@ $.widget( "mobile.dialog", {
 	},
 
 	_handlePageBeforeHide: function() {
+		debugDialogWidget('_handlePageBeforeHide', this)
 		this._isCloseable = false;
 	},
 
@@ -6449,6 +6455,7 @@ $.widget( "mobile.dialog", {
 	// - if the click was on the close button, or the link has a data-rel="back"
 	//   it'll go back in history naturally
 	_handleVClickSubmit: function( event ) {
+		debugDialogWidget('_handleVClickSubmit', this)
 		var attrs,
 			$target = $( event.target ).closest( event.type === "vclick" ? "a" : "form" );
 
@@ -6463,6 +6470,7 @@ $.widget( "mobile.dialog", {
 	},
 
 	_create: function() {
+		debugDialogWidget('_create', this)
 		var elem = this.element,
 			opts = this.options;
 
@@ -6493,6 +6501,7 @@ $.widget( "mobile.dialog", {
 	},
 
 	_setOptions: function( options ) {
+		debugDialogWidget('_setOptions', this)
 		var closeButtonLocation, closeButtonText,
 			currentOpts = this.options;
 
@@ -6524,6 +6533,7 @@ $.widget( "mobile.dialog", {
 	},
 
 	_setCloseBtn: function( location, text ) {
+		debugDialogWidget('_setCloseBtn', this)
 		var dst,
 			btn = this._headerCloseButton;
 
@@ -6557,6 +6567,7 @@ $.widget( "mobile.dialog", {
 
 	// Close method goes back in history
 	close: function() {
+		debugDialogWidget('close', this)
 		var hist = $.mobile.navigate.history;
 
 		if ( this._isCloseable ) {
