@@ -2896,6 +2896,19 @@ function AutocompleteHelper($, $ul, $input, $clear, deferredGet)
 		return text;
 	};
 }
+// EOC
+(function( $ ) {
+	$(document).bind("mobileinit", function()
+	{
+		$.widget( "mobile.toolbar", $.mobile.toolbar, {
+			_create: function() {
+				this.options.tapToggleBlacklist += ', .ui-listview';
+				this._super();
+			}
+		});
+	});
+})( jQuery );
+
 // jquery.mobile.autocomplete.js, EOF
 // InnerToggler.js, line#0
 
